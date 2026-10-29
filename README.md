@@ -754,9 +754,9 @@ Docker Engine 29.9, Dev Containers command line 0.89.0) with the image `2026.10.
 2026: Docker (already installed: the install commands of part 1 come from Docker's documentation),
 part 1 step 3 (the failure of the Docker inside the container without `iptable_nat`, then the fix),
 the containers of the three repositories opened with the command line, the Docker inside them, the
-download of Open WebUI. The workflow [`guide.yml`](.github/workflows/guide.yml) is written to follow
-the Linux commands of this guide at each change ([`ci/README.md`](ci/README.md)); it has not yet run
-on GitHub. Not tested: the steps in VS Code's windows, macOS, Windows, `openwebui start` with a key.
+download of Open WebUI. The workflow [`guide.yml`](.github/workflows/guide.yml) follows the Linux
+commands of this guide at each change, on Ubuntu 24.04 and 26.04, for the three repositories
+([`ci/README.md`](ci/README.md)): green on GitHub on 29 October 2026. Not tested: the steps in VS Code's windows, macOS, Windows, `openwebui start` with a key.
 
 Texts: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt). Configuration and scripts:
 [EUPL-1.2](LICENSES/EUPL-1.2.txt). See [`REUSE.toml`](REUSE.toml).

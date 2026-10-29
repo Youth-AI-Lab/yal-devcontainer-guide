@@ -6,7 +6,7 @@ without us), for each of the three repositories that use the image of the worksh
 
 | System | State |
 |---|---|
-| Linux (Ubuntu 24.04 and 26.04) | written for the workflow, from part 1 step 2 (Docker is already installed on GitHub's machines); stages `open`, `inside` and `delete` passed on a Linux laptop on 29 October 2026; not yet run on GitHub |
+| Linux (Ubuntu 24.04 and 26.04) | tested by the workflow, from part 1 step 2 (Docker is already installed on GitHub's machines); green on GitHub on 29 October 2026 for the three repositories |
 | macOS | not possible here: GitHub's macOS machines cannot run Docker; to test by hand |
 | Windows | not possible here: GitHub's Windows machines have no Docker Desktop; to test by hand |
 
