@@ -1,0 +1,18 @@
+version = 1
+SPDX-PackageName = "yal-devcontainer-guide"
+SPDX-PackageSupplier = "Youth AI Lab (Erasmus+)"
+SPDX-PackageDownloadLocation = "https://github.com/Youth-AI-Lab/yal-devcontainer-guide"
+
+# Texts: CC BY-SA 4.0.
+[[annotations]]
+path = ["README.md", "ci/README.md"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Youth AI Lab partners"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
+
+# Configuration files and scripts: EUPL-1.2.
+[[annotations]]
+path = ["REUSE.toml", ".gitattributes", "ci/run_guide.py", ".github/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Youth AI Lab partners"
+SPDX-License-Identifier = "EUPL-1.2"

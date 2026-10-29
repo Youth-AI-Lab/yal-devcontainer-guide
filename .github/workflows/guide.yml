@@ -1,0 +1,69 @@
+# Follows the Linux part of the guide on a fresh machine, with the commands of README.md itself
+# (ci/run_guide.py), for each repository that uses the image of the workshops. See ci/README.md.
+name: Guide end to end
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 * * 1"  # every Monday: Docker and the Dev Containers tools change without us
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-26.04, ubuntu-24.04]
+        repo: [yal-workshop-kit, yal-openwebui-guide, yal-opencode-guide]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 45
+    env:
+      CI_REPO: ${{ matrix.repo }}
+    steps:
+      - uses: actions/checkout@v7
+
+      # The same working folder for every stage (the runner context is not allowed in env above).
+      - name: Working folder
+        run: |
+          mkdir -p "$RUNNER_TEMP/work"
+          echo "CI_WORKDIR=$RUNNER_TEMP/work" >> "$GITHUB_ENV"
+
+      - name: Part 1, steps 2 and 3 - Docker, and Docker inside a container
+        timeout-minutes: 5
+        run: python3 ci/run_guide.py --os linux --stage check
+
+      - name: Part 3 - the command line
+        timeout-minutes: 5
+        run: python3 ci/run_guide.py --os linux --stage cli
+
+      - name: Part 3 - download and open the repository
+        timeout-minutes: 20
+        run: python3 ci/run_guide.py --os linux --stage open
+
+      - name: Part 3 - a command in the container
+        timeout-minutes: 5
+        run: python3 ci/run_guide.py --os linux --stage inside
+
+      - name: Part 5 - the Docker inside the container runs a container
+        timeout-minutes: 5
+        working-directory: ${{ env.CI_WORKDIR }}
+        run: |
+          for i in $(seq 1 30); do
+            devcontainer exec --workspace-folder "$CI_REPO" docker info >/dev/null 2>&1 && break
+            sleep 2
+          done
+          devcontainer exec --workspace-folder "$CI_REPO" docker run --rm hello-world | grep "Hello from Docker!"
+
+      - name: Part 7 - delete everything
+        timeout-minutes: 5
+        run: python3 ci/run_guide.py --os linux --stage delete
+
+      - name: Journal of the Docker inside the container (when something failed)
+        if: failure() || cancelled()
+        working-directory: ${{ env.CI_WORKDIR }}
+        run: devcontainer exec --workspace-folder "$CI_REPO" tail -30 /tmp/dockerd.log || true
