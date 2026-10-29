@@ -615,7 +615,7 @@ repositories), **Volumes** (their `dind-var-lib-docker-…` volume), **Images**
    ```
 
    **What you should see.** The name of the container and its volume (`dind-var-lib-docker-…`), then
-   the image of the workshops and one `vsc-yal-workshop-kit-…` image. If the first command shows an
+   one `vsc-yal-workshop-kit-…` image and, often, the image of the workshops. If the first command shows an
    error, the container was already deleted.
 
 2. **Delete** the container, its volume and its copy of the image (the files of your folder stay):
@@ -636,8 +636,11 @@ repositories), **Volumes** (their `dind-var-lib-docker-…` volume), **Images**
 
    <!-- ci linux stage=delete check="docker image ls -q ghcr.io/youth-ai-lab/yal-workshop-devcontainer | grep -q . || echo image deleted" expect="image deleted" -->
    ```bash
-   docker image rm $(docker image ls -q ghcr.io/youth-ai-lab/yal-workshop-devcontainer)
+   docker image ls -q ghcr.io/youth-ai-lab/yal-workshop-devcontainer | xargs -r docker image rm
    ```
+
+   **What you should see.** A few lines `Untagged:` and `Deleted:`, or nothing: on some computers,
+   Docker keeps only the copy of step 2, and there is then nothing more to delete.
 
 4. **On Linux, if you made `iptable_nat` load at each start** (part 1, step 3), and no other
    program needs it:
