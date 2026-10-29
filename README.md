@@ -74,7 +74,7 @@ Codespace. For a model that runs on a computer of your organisation, use the
   macOS 14 or later, or Windows 11 in an edition that
   [Docker Desktop supports](https://docs.docker.com/desktop/setup/install/windows-install/#system-requirements).
 - At least **8 GB of memory** (measured on Linux only), and at least **20 GB of free disk** (the
-  image and Open WebUI take 4.15 GB + 6.1 GB: see [what it takes](#what-it-takes)).
+  image and Open WebUI take 4.04 GB + 6.1 GB: see [what it takes](#what-it-takes)).
 - The right to **install software** on it (an administrator password). On a computer your
   organisation manages, ask the person who manages it first.
 - About **one hour** the first time, most of it waiting for downloads.
@@ -103,7 +103,7 @@ Measured on a Linux laptop (Ubuntu 26.04, Docker Engine 29.9), 29 October 2026.
 
 | What | Size | When |
 |---|---|---|
-| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.30`) | 4.15 GB on disk | once, the first time you open any of the three repositories |
+| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.31`) | 4.04 GB on disk | once, the first time you open any of the three repositories |
 | Open WebUI, inside the container (`openwebui start`) | 6.1 GB on disk (a 4.6 GB download; 86 s on this connection) | once per container, the first time you start Open WebUI there |
 | Open WebUI running | about 1.2 GB of memory (measured in a Codespace) | while it runs |
 
@@ -188,9 +188,12 @@ docker run --rm hello-world
 
 #### Step 3 - Allow Docker inside the container
 
-The command `openwebui` starts Open WebUI with a **second Docker, inside the container**. That
-second Docker needs a part of the Linux kernel (the core of the system), `iptable_nat`, that some
-recent systems do not load by themselves: we met this on Ubuntu 26.04 with its 7.0 kernel. Check:
+The command `openwebui` starts Open WebUI with a **second Docker, inside the container**. With the
+images before `2026.10.31`, that second Docker needs a part of the Linux kernel (the core of the
+system), `iptable_nat`, that some recent systems do not load by themselves: we met this on Ubuntu
+26.04 with its 7.0 kernel. Since `2026.10.31`, it chooses by itself the way that works on your
+computer (**not yet tested** on a computer that has not loaded `iptable_nat`): do this step only if
+`openwebui` says that Docker is not available. Check:
 
 <!-- ci linux stage=check -->
 ```bash
@@ -418,7 +421,7 @@ VS Code sees the configuration of the container (the `.devcontainer` folder) and
 bottom right, **"Reopen in Container"**: click it. If you missed it, open the command palette,
 type **Dev Containers: Reopen in Container** and press Enter.
 
-The first time, Docker downloads the image (4.15 GB on disk): a few minutes. The next times, the
+The first time, Docker downloads the image (4.04 GB on disk): a few minutes. The next times, the
 container opens in a few seconds.
 
 **What you should see.** VS Code reopens. The bottom left corner reads **Dev Container: Youth AI
@@ -661,7 +664,7 @@ repositories), **Volumes** (their `dind-var-lib-…` volumes), **Images**
 - **`openwebui start` with a key is not tested outside a Codespace**, nor Docker Desktop's Docker
   inside a container ([part 5](#part-5---open-webui-in-the-container)).
 - **No group** ([part 6](#part-6---a-group)): use the local AI guide.
-- **The disk.** About 10.3 GB with Open WebUI (4.15 + 6.1 GB), plus 6.1 GB for each other
+- **The disk.** About 10 GB with Open WebUI (4.04 + 6.1 GB), plus 6.1 GB for each other
   repository where you start it.
 - **The container is privileged** ([part 3](#part-3---open-a-repository)).
 - **The model still needs the internet** and a key, as in a Codespace.
@@ -751,7 +754,8 @@ The container was made again (Rebuild, or a new version of the image): this is e
 ## About
 
 Written for the Youth AI Lab project (Erasmus+), October 2026. Tested on Ubuntu 26.04 (kernel 7.0,
-Docker Engine 29.9, Dev Containers command line 0.89.0) with the image `2026.10.30`, on 29 October
+Docker Engine 29.9, Dev Containers command line 0.89.0) with the image `2026.10.30` (and `2026.10.31`
+for the Docker inside the container and the deletion of part 7), on 29 October
 2026: Docker (already installed: the install commands of part 1 come from Docker's documentation),
 part 1 step 3 (the failure of the Docker inside the container without `iptable_nat`, then the fix),
 the containers of the three repositories opened with the command line, the Docker inside them, the
