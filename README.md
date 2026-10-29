@@ -589,20 +589,20 @@ accept:
 
 ### Delete everything
 
-*A technical part.* Each container keeps its own data in a Docker **volume** whose name starts with
-`dind-var-lib-docker-` (Open WebUI: 6.1 GB each). Docker does not delete it with the container.
+*A technical part.* Each container keeps its own data in one or two Docker **volumes** whose names
+start with `dind-var-lib-` (Open WebUI: 6.1 GB each). Docker does not delete them with the container.
 Dev Containers also makes, on Linux, one copy of the image for each repository, with a name that
 starts with `vsc-` (it shares its disk with the image).
 
 > [!IMPORTANT]
 > **Delete only the containers of this guide.** Other projects opened with Dev Containers on this
-> computer have containers and `dind-var-lib-docker-` volumes too. The commands below choose the
+> computer have containers and `dind-var-lib-` volumes too. The commands below choose the
 > container by the folder of the repository: type them next to the folder of part 3, step 1.
 > **The Open WebUI guide:** first save the chatbots you want to keep (`openwebui export`). This step
 > deletes the participants' accounts and conversations, as deleting a Codespace would.
 
 On Windows, use Docker Desktop instead (**not tested**): **Containers** (delete those of the
-repositories), **Volumes** (their `dind-var-lib-docker-…` volume), **Images**
+repositories), **Volumes** (their `dind-var-lib-…` volumes), **Images**
 (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer`, and `vsc-…` images if there are some).
 
 1. Close VS Code. **See** the container of the kit, its volume, and the images:
@@ -614,15 +614,16 @@ repositories), **Volumes** (their `dind-var-lib-docker-…` volume), **Images**
    docker image ls --format '{{.Repository}}:{{.Tag}}' | grep -E '^(vsc-yal-workshop-kit-[0-9a-f]{64}-uid|ghcr.io/youth-ai-lab/yal-workshop-devcontainer):'
    ```
 
-   **What you should see.** The name of the container and its volume (`dind-var-lib-docker-…`), then
+   **What you should see.** The name of the container and its volumes (`dind-var-lib-docker-…`, and with
+   newer images also `dind-var-lib-containerd-…`), then
    one `vsc-yal-workshop-kit-…` image and, often, the image of the workshops. If the first command shows an
    error, the container was already deleted.
 
-2. **Delete** the container, its volume and its copy of the image (the files of your folder stay):
+2. **Delete** the container, its volumes and its copy of the image (the files of your folder stay):
 
    <!-- ci linux stage=delete check="docker ps -aq --filter label=devcontainer.local_folder=$PWD/yal-workshop-kit | grep -q . || echo container deleted" expect="container deleted" -->
    ```bash
-   vol=$(docker inspect -f '{{range .Mounts}}{{if eq .Type "volume"}}{{.Name}}{{end}}{{end}}' $id)
+   vol=$(docker inspect -f '{{range .Mounts}}{{if eq .Type "volume"}}{{.Name}} {{end}}{{end}}' $id)
    docker rm -f $id
    docker volume rm $vol
    docker image rm $(docker image ls --format '{{.Repository}}:{{.Tag}}' | grep -E '^vsc-yal-workshop-kit-[0-9a-f]{64}-uid:')
@@ -722,10 +723,10 @@ Open WebUI takes 6.1 GB **per container** where you started it. Delete the conta
 you do not use any more ([part 7](#delete-everything)).
 
 If you deleted a container another way (for example in Docker Desktop, or with its folder), its
-volume may still be there. This lists the `dind-var-lib-docker-` volumes that **no container uses**:
+volumes may still be there. This lists the `dind-var-lib-` volumes that **no container uses**:
 
 ```bash
-docker volume ls --filter dangling=true --filter name=dind-var-lib-docker-
+docker volume ls --filter dangling=true --filter name=dind-var-lib-
 ```
 
 They may also belong to other projects of this computer: delete only those you are sure of, with
