@@ -1,4 +1,4 @@
-# The workshop kit and the guides on your own computer
+# The workshops and the guides on your own computer
 
 ## Youth AI Lab — Erasmus+ project
 
@@ -8,12 +8,12 @@
   - Read the [Troubleshooting](#troubleshooting) section at the end of this guide.
   - Look at, or open, an [issue](https://github.com/Youth-AI-Lab/yal-devcontainer-guide/issues).
 
-> **A guide to follow on your own, in about one hour the first time.** The workshops and two guides
-> of the Youth AI Lab project run in a **GitHub Codespace**: a computer in your browser, with
+> **A guide to follow on your own, in about one hour the first time.** The five workshops and three
+> guides of the Youth AI Lab project run in a **GitHub Codespace**: a computer in your browser, with
 > nothing to install. This guide is the other way: the **same thing on your own computer**, in a
 > *container*. You install a few tools once (Docker, git, and Visual Studio Code with its Dev
-> Containers extension), then you open the workshop kit, the Open WebUI guide or the OpenCode guide,
-> and you get the same image, the same commands and the same versions as in a Codespace.
+> Containers extension), then you open the repository of a workshop or of a guide, and you get the
+> same image, the same commands and the same versions as in a Codespace.
 
 This guide is for youth workers, facilitators and educators who prepare or run the workshops of the
 project, and for the colleague who helps them with their computer. It does not repeat the
@@ -29,7 +29,7 @@ workshops or the guides: once a repository is open, you follow its own README.
 |---|---|
 | **1. Install the tools** | Install Docker, git and Visual Studio Code on Linux, macOS or Windows, and check that they work. |
 | **2. The Dev Containers extension** | Add the extension that opens a folder inside a container. |
-| **3. Open a repository** | Open the workshop kit, the Open WebUI guide or the OpenCode guide in its container, and recognise what you should see. |
+| **3. Open a repository** | Open a workshop, the workshop kit or a guide in its container, and recognise what you should see. |
 | **4. Your key** | Save the key of the model in the container, and know where it is kept and when it is lost. |
 | **5. Open WebUI in the container** | Start Open WebUI on your computer, and know the disk it needs. |
 | **6. A group** | Know why this setup is not for opening a chatbot to a group, and what to use instead. |
@@ -47,8 +47,8 @@ pairs get in the room.
 computer, none of this: the folder stays as long as you keep it.
 
 **Tested, with the limits we found.** On Linux, in October 2026, we checked Docker, the setting of
-part 1 step 3, the containers of the three repositories opened from the terminal, and the Docker
-inside them. Everything else follows the official documentation of each tool, and is marked **(not
+part 1 step 3, the containers of six repositories opened from the terminal (two workshops, the kit,
+three guides), and the Docker inside them. Everything else follows the official documentation of each tool, and is marked **(not
 tested)**: the steps in VS Code's windows, macOS and Windows. If you are the first, tell us how it
 went ([issues](https://github.com/Youth-AI-Lab/yal-devcontainer-guide/issues)).
 
@@ -71,10 +71,11 @@ Codespace. For a model that runs on a computer of your organisation, use the
 ### Prerequisites
 
 - **A computer** with Linux (Ubuntu 26.04 or 24.04), a Mac with an Apple chip (M1 or later) and
-  macOS 14 or later, or Windows 11 in an edition that
+  macOS 15 or later, or Windows 11 in an edition that
   [Docker Desktop supports](https://docs.docker.com/desktop/setup/install/windows-install/#system-requirements).
-- At least **8 GB of memory** (measured on Linux only), and at least **20 GB of free disk** (the
-  image and Open WebUI take 4.04 GB + 6.1 GB: see [what it takes](#what-it-takes)).
+- At least **8 GB of memory** (measured on Linux only), and at least **20 GB of free disk** for one
+  repository (the image and Open WebUI take 4.34 GB + 6.1 GB: see [what it takes](#what-it-takes)).
+  For the whole series, count about 29 GB if you keep the four workshops that start Open WebUI.
 - The right to **install software** on it (an administrator password). On a computer your
   organisation manages, ask the person who manages it first.
 - About **one hour** the first time, most of it waiting for downloads.
@@ -92,8 +93,8 @@ A **volume** is disk space that Docker keeps for a container, even after the con
 deleted. A **port** is the number after an address, as 3000 in `localhost:3000`: it tells the
 computer which program should answer.
 
-**Are you ready?** You are if you know which repository you want to open (the kit, the Open WebUI
-guide or the OpenCode guide), and you have its key or subscription ready.
+**Are you ready?** You are if you know which repository you want to open (see
+[part 3](#part-3---open-a-repository)), and you have its key or subscription ready.
 
 ---
 
@@ -103,12 +104,12 @@ Measured on a Linux laptop (Ubuntu 26.04, Docker Engine 29.9), 29 October 2026.
 
 | What | Size | When |
 |---|---|---|
-| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.34`) | 4.34 GB on disk | once, the first time you open any of the three repositories |
+| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.34`) | 4.34 GB on disk | once, the first time you open any of these repositories |
 | Open WebUI, inside the container (`openwebui start`) | 6.1 GB on disk (a 4.6 GB download; 86 s on this connection) | once per container, the first time you start Open WebUI there |
 | Open WebUI running | about 1.2 GB of memory (measured in a Codespace) | while it runs |
 
-The three repositories use the **same image**: you download it once. Each open repository has its
-**own container**, and each container keeps its own copy of Open WebUI if you start it there:
+All the repositories of [part 3](#part-3---open-a-repository) use the **same image**: you download it
+once. Each open repository has its **own container**, and each container keeps its own copy of Open WebUI if you start it there:
 6.1 GB more for each.
 
 | | Codespace | Your computer |
@@ -244,7 +245,7 @@ then updates with your system (**not tested**).
 
 ### On macOS (Apple chip) (not tested)
 
-Written for a Mac with an M1 chip or later and macOS 14 or later. We install with **Homebrew**, a free
+Written for a Mac with an M1 chip or later and macOS 15 or later. We install with **Homebrew**, a free
 tool that installs software from the terminal and keeps it up to date.
 
 #### Step 1 - Install Homebrew
@@ -371,21 +372,29 @@ palette (`Ctrl+Shift+P`, `Cmd+Shift+P` on a Mac), typing **Dev Containers** list
 
 ## Part 3 - Open a repository
 
-The three repositories that use the image of the workshops:
+The repositories that use the image of the workshops. **To follow a workshop, open its own
+repository**: it has its page, its sheet and only what it needs. The kit presents the series and holds
+all the files, but it has no workshop page.
 
 | Repository | What it is | Then follow |
 |---|---|---|
-| [`yal-workshop-kit`](https://github.com/Youth-AI-Lab/yal-workshop-kit) | the kit of the five workshops | its README |
+| [`yal-workshop-preprompt`](https://github.com/Youth-AI-Lab/yal-workshop-preprompt) | workshop 1 | its README |
+| [`yal-workshop-rag`](https://github.com/Youth-AI-Lab/yal-workshop-rag) | workshop 2 | its README |
+| [`yal-workshop-search`](https://github.com/Youth-AI-Lab/yal-workshop-search) | workshop 3 | its README |
+| [`yal-workshop-tools`](https://github.com/Youth-AI-Lab/yal-workshop-tools) | workshop 4 | its README |
+| [`yal-workshop-wiki`](https://github.com/Youth-AI-Lab/yal-workshop-wiki) | workshop 5 | its README |
+| [`yal-workshop-kit`](https://github.com/Youth-AI-Lab/yal-workshop-kit) | the home of the series, with the files of the five workshops | its README |
 | [`yal-openwebui-guide`](https://github.com/Youth-AI-Lab/yal-openwebui-guide) | chatbots for your groups with Open WebUI | its README, part 1 step 2 |
 | [`yal-opencode-guide`](https://github.com/Youth-AI-Lab/yal-opencode-guide) | a chatbot of your own with OpenCode | its README, part 1 step 2 |
+| [`yal-hermes-guide`](https://github.com/Youth-AI-Lab/yal-hermes-guide) | an assistant to prepare your sessions, never for use with young people | its README |
 
-In the steps below, we open the kit. For a guide, change the name of the repository.
+In the steps below, we open the kit. For a workshop or a guide, change the name of the repository.
 
 > [!WARNING]
 > **The container is privileged.** It needs this for its own Docker (part 5). In it, `sudo` asks
 > for no password, so any program that runs there can take the administrator rights and reach
 > beyond the container (on Linux, the whole computer). In practice:
-> - open only these three repositories this way;
+> - open only the repositories of this table this way;
 > - in Open WebUI, never add **Tools** or **Functions** found on the internet: Open WebUI's
 >   documentation says that they "execute arbitrary Python code on your server", here in this
 >   container;
@@ -421,16 +430,22 @@ VS Code sees the configuration of the container (the `.devcontainer` folder) and
 bottom right, **"Reopen in Container"**: click it. If you missed it, open the command palette,
 type **Dev Containers: Reopen in Container** and press Enter.
 
-The first time, Docker downloads the image (4.04 GB on disk): a few minutes. The next times, the
+The first time, Docker downloads the image (4.34 GB on disk): a few minutes. The next times, the
 container opens in a few seconds.
 
 **What you should see.** VS Code reopens. The bottom left corner reads **Dev Container: Youth AI
-Lab — customising a chatbot** (for the guides: **Youth AI Lab — group chatbots with Open WebUI**, or
-**Youth AI Lab — a chatbot with OpenCode**). Open a terminal (menu **Terminal → New Terminal**): it
-greets you with the message of the repository (the kit and the Open WebUI guide: **"Welcome! First,
-save your API key: workshop-login"**; the OpenCode guide: **"Welcome! Start the chatbot of this
-guide with: chatbot"**). From here on, everything is as in a Codespace: follow the README of the
+Lab — customising a chatbot** (for the guides: **Youth AI Lab — group chatbots with Open WebUI**,
+**Youth AI Lab — a chatbot with OpenCode**, or **Youth AI Lab — an assistant with Hermes Agent**). Open
+a terminal (menu **Terminal → New Terminal**): it greets you with the message of the repository (the
+workshops, the kit and the Open WebUI guide: **"Welcome! First, save your API key: workshop-login"**;
+the OpenCode guide: **"Welcome! Start the chatbot of this guide with: chatbot"**; the Hermes guide:
+**"Welcome! Start the assistant of this guide with: hermes"**). From here on, everything is as in a Codespace: follow the README of the
 repository.
+
+> [!IMPORTANT]
+> **The Hermes guide.** The first time, the container also installs Hermes Agent: wait until it has
+> finished. And [never choose Rebuild Container](https://github.com/Youth-AI-Lab/yal-hermes-guide#step-1---open-your-codespace):
+> here too, it deletes your key, what Hermes remembers and your conversations.
 
 > [!NOTE]
 > Your files stay in the folder `yal-workshop-kit` on your computer: you see them in the container,
@@ -480,12 +495,14 @@ same as in a Codespace. The other tools are there too, waiting for a key
 
 ## Part 4 - Your key
 
-Each repository says how to save the key of the model: `workshop-login` in the kit and in the Open
-WebUI guide, `/connect` inside OpenCode in the OpenCode guide. Type it **in a terminal of the
+Each repository says how to save the key of the model: `workshop-login` in the workshops, the kit and
+the Open WebUI guide, `/connect` inside OpenCode in the OpenCode guide, `hermes auth add` in the Hermes
+guide. Type it **in a terminal of the
 container**: a terminal opened in VS Code while the bottom left corner reads **Dev Container: …**.
 
 **Where the key is kept.** In the home folder of the container (`/home/vscode`): `~/.workshop-key`
-for `workshop-login` (readable only by you), `~/.local/share/opencode/` for OpenCode. **Never in the
+for `workshop-login` (readable only by you), `~/.local/share/opencode/` for OpenCode,
+`~/.hermes/auth.json` for Hermes. **Never in the
 folder of the repository**: it cannot be shared or published with your work by mistake.
 
 **When it is lost.** When the container is made again: **Dev Containers: Rebuild Container**, a new
@@ -507,7 +524,7 @@ Closing VS Code or restarting the computer keeps it.
 
 ## Part 5 - Open WebUI in the container
 
-The command `openwebui` of the kit and of the Open WebUI guide runs Open WebUI with the Docker
+The command `openwebui` of the workshops, the kit and the Open WebUI guide runs Open WebUI with the Docker
 inside the container. The configuration of the image asks for this by itself: there is nothing to
 change in the repository.
 
@@ -544,7 +561,7 @@ computers.
 
 > [!WARNING]
 > **Do not make the port of the container reachable from other devices.** VS Code has a setting for
-> it (**Remote: Local Port Host**); leave it on `localhost`. In the workshop kit, Open WebUI has no
+> it (**Remote: Local Port Host**); leave it on `localhost`. In the workshops and the kit, Open WebUI has no
 > sign-in and uses your key: anyone on the same Wi-Fi would be its administrator, and would use
 > your key. The Open WebUI guide has accounts, but its Open WebUI accepts only `localhost:3000`:
 > the participants could not use the chat from another device. And never leave the computer to
@@ -552,8 +569,7 @@ computers.
 
 **To open a chatbot to a group without a Codespace**, follow the
 [local AI guide](https://github.com/Youth-AI-Lab/yal-local-ai-guide): it installs Open WebUI as a
-service on a computer of your organisation, with accounts and the settings for a group, and it was
-tested on a real network. Read first the part
+service on a computer of your organisation, with accounts and the settings for a group. Read first the part
 [The participants' data](https://github.com/Youth-AI-Lab/yal-openwebui-guide#the-participants-data)
 of the Open WebUI guide.
 
@@ -664,8 +680,8 @@ repositories), **Volumes** (their `dind-var-lib-…` volumes), **Images**
 - **`openwebui start` with a key is not tested outside a Codespace**, nor Docker Desktop's Docker
   inside a container ([part 5](#part-5---open-webui-in-the-container)).
 - **No group** ([part 6](#part-6---a-group)): use the local AI guide.
-- **The disk.** About 10 GB with Open WebUI (4.04 + 6.1 GB), plus 6.1 GB for each other
-  repository where you start it.
+- **The disk.** About 10 GB with Open WebUI (4.34 + 6.1 GB), plus 6.1 GB for each other
+  repository where you start it: about 29 GB for the four workshops that use it.
 - **The container is privileged** ([part 3](#part-3---open-a-repository)).
 - **The model still needs the internet** and a key, as in a Codespace.
 
@@ -749,7 +765,8 @@ The container was made again (Rebuild, or a new version of the image): this is e
 - Docker: [Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/),
   [Docker Desktop on Mac](https://docs.docker.com/desktop/setup/install/mac-install/),
   [Docker Desktop on Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
-- The workshop kit: <https://github.com/Youth-AI-Lab/yal-workshop-kit>
+- The series: [the five workshops](https://github.com/Youth-AI-Lab/yal-workshop-kit#the-series) and
+  [the other guides](https://github.com/Youth-AI-Lab/yal-workshop-kit#going-further)
 
 ## About
 
@@ -758,10 +775,10 @@ Docker Engine 29.9, Dev Containers command line 0.89.0) with the image `2026.10.
 for the Docker inside the container and the deletion of part 7), on 29 October
 2026: Docker (already installed: the install commands of part 1 come from Docker's documentation),
 part 1 step 3 (the failure of the Docker inside the container without `iptable_nat`, then the fix),
-the containers of the three repositories opened with the command line, the Docker inside them, the
-download of Open WebUI. The workflow [`guide.yml`](.github/workflows/guide.yml) follows the Linux
-commands of this guide at each change, on Ubuntu 24.04 and 26.04, for the three repositories
-([`ci/README.md`](ci/README.md)): green on GitHub on 29 October 2026. Not tested: the steps in VS Code's windows, macOS, Windows, `openwebui start` with a key.
+the containers of the kit and of the Open WebUI and OpenCode guides opened with the command line, the
+Docker inside them, the download of Open WebUI. The workflow [`guide.yml`](.github/workflows/guide.yml) follows the Linux
+commands of this guide at each change, on Ubuntu 24.04 and 26.04, for six repositories: workshops 1 and
+5, the kit, and the Open WebUI, OpenCode and Hermes guides ([`ci/README.md`](ci/README.md)). Not tested: the steps in VS Code's windows, macOS, Windows, `openwebui start` with a key.
 
 Texts: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt). Configuration and scripts:
 [EUPL-1.2](LICENSES/EUPL-1.2.txt). See [`REUSE.toml`](REUSE.toml).

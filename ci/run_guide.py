@@ -11,8 +11,8 @@ an HTML comment that GitHub does not show:
 - `expect="..."`: a text that the output of the block (and of its check) must contain.
 
 One change is made to the commands, and only this one (SUBSTITUTIONS below): the guide opens the
-workshop kit, and says "for a guide, change the name of the repository"; CI_REPO does that, so
-that the same blocks open each of the three repositories.
+workshop kit, and says "for a workshop or a guide, change the name of the repository"; CI_REPO does
+that, so that the same blocks open each repository of the workflow.
 
 The blocks run in CI_WORKDIR (default: a new temporary folder), never in the home folder.
 Never run the stage `delete` on your own computer: it deletes every Dev Containers container.

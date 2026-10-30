@@ -28,8 +28,9 @@ see:
 - `expect="..."`: a text that the output must contain ("What you should see").
 
 Only one thing changes in the commands (`SUBSTITUTIONS` in `run_guide.py`): the guide opens the
-workshop kit and says "for a guide, change the name of the repository"; `CI_REPO` does it, so the
-workflow opens each of the three repositories.
+workshop kit and says "for a workshop or a guide, change the name of the repository"; `CI_REPO` does
+it, so the workflow opens six of the nine repositories: workshops 1 and 5 (the smallest and the largest),
+the kit, and the three guides.
 
 After `inside`, the workflow waits for the Docker inside the container (it starts a
 few seconds after the container), then checks that it runs a container: the steps in VS Code's
