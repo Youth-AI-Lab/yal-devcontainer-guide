@@ -778,7 +778,7 @@ part 1 step 3 (the failure of the Docker inside the container without `iptable_n
 the containers of the kit and of the Open WebUI and OpenCode guides opened with the command line, the
 Docker inside them, the download of Open WebUI. The workflow [`guide.yml`](.github/workflows/guide.yml) follows the Linux
 commands of this guide at each change, on Ubuntu 24.04 and 26.04, for six repositories: workshops 1 and
-5, the kit, and the Open WebUI, OpenCode and Hermes guides ([`ci/README.md`](ci/README.md)). Not tested: the steps in VS Code's windows, macOS, Windows, `openwebui start` with a key.
+5, the kit, and the Open WebUI, OpenCode and Hermes guides ([`ci/README.md`](ci/README.md)): green on GitHub on 30 October 2026, with the image `2026.10.35`. Not tested: the steps in VS Code's windows, macOS, Windows, `openwebui start` with a key.
 
 Texts: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt). Configuration and scripts:
 [EUPL-1.2](LICENSES/EUPL-1.2.txt). See [`REUSE.toml`](REUSE.toml).
