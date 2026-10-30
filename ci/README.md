@@ -2,11 +2,11 @@
 
 The workflow [`guide.yml`](../.github/workflows/guide.yml) follows the Linux part of this guide on a
 fresh machine of GitHub, at each change and every Monday (the Dev Containers tools and Docker change
-without us), for each of the three repositories that use the image of the workshops.
+without us), for six of the nine repositories that use the image of the workshops.
 
 | System | State |
 |---|---|
-| Linux (Ubuntu 24.04 and 26.04) | tested by the workflow, from part 1 step 2 (Docker is already installed on GitHub's machines); green on GitHub on 29 October 2026 for the three repositories |
+| Linux (Ubuntu 24.04 and 26.04) | tested by the workflow, from part 1 step 2 (Docker is already installed on GitHub's machines); green on GitHub on 30 October 2026 for the six repositories, with image 2026.10.35 |
 | macOS | not possible here: GitHub's macOS machines cannot run Docker; to test by hand |
 | Windows | not possible here: GitHub's Windows machines have no Docker Desktop; to test by hand |
 

@@ -103,11 +103,11 @@ computer which program should answer.
 
 ## What it takes
 
-Measured on a Linux laptop (Ubuntu 26.04, Docker Engine 29.9), 29 October 2026.
+Measured on a Linux laptop (Ubuntu 26.04, Docker Engine 29.9), 29 and 30 October 2026.
 
 | What | Size | When |
 |---|---|---|
-| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.36`) | 4.34 GB on disk | once, the first time you open any of these repositories |
+| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.36`) | 4.34 GB on disk (a local amd64 build of `2026.10.32`, 30 October 2026; later versions and arm64 not measured) | once, the first time you open any of these repositories |
 | Open WebUI, inside the container (`openwebui start`) | 6.1 GB on disk (a 4.6 GB download; 86 s on this connection) | once per container, the first time you start Open WebUI there |
 | Open WebUI running | about 1.2 GB of memory (measured in a Codespace) | while it runs |
 
@@ -661,7 +661,8 @@ On Windows, use Docker Desktop instead (**not tested**): **Containers** (delete 
 repositories), **Volumes** (their `dind-var-lib-…` volumes), **Images**
 (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer`, and `vsc-…` images if there are some).
 
-1. Close VS Code. **See** the container of the kit, its volume, and the images:
+1. Close VS Code. **See** the container of the repository (here, the kit), its volumes, and the
+   images:
 
    <!-- ci linux stage=delete expect="dind-var-lib-docker-" expect="vsc-yal-workshop-kit-" -->
    ```bash
