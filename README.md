@@ -48,8 +48,11 @@ computer, none of this: the folder stays as long as you keep it.
 
 **Tested, with the limits we found.** On Linux, in October 2026, we checked Docker, the setting of
 part 1 step 3, the containers of six repositories opened from the terminal (two workshops, the kit,
-three guides), and the Docker inside them. Everything else follows the official documentation of each tool, and is marked **(not
-tested)**: the steps in VS Code's windows, macOS and Windows. If you are the first, tell us how it
+three guides), and the Docker inside them. On 30 October 2026, we also tried in VS Code's windows on
+Linux (Ubuntu 26.04.1, VS Code 1.142.0, Dev Containers 0.469.0), with the kit: part 3, the Ports tab
+of part 5 and the notification of part 7. Everything
+else follows the official documentation of each tool, and is marked **(not tested)**: macOS,
+Windows, and in VS Code, closing the window and a Rebuild. If you are the first, tell us how it
 went ([issues](https://github.com/Youth-AI-Lab/yal-devcontainer-guide/issues)).
 
 ### Is this guide for you?
@@ -360,7 +363,8 @@ docker run --rm hello-world
 The **Dev Containers** extension lets VS Code open a folder *inside* a container. It is made by
 Microsoft; its identifier is `ms-vscode-remote.remote-containers`.
 
-1. Open VS Code.
+1. Open VS Code. The first time, a window **Welcome to VS Code** may cover everything: click
+   **Continue without Signing In** (a picture is in part 3, step 3).
 2. Open the **Extensions** view (`Ctrl+Shift+X`, `Cmd+Shift+X` on a Mac).
 3. Search for **Dev Containers**, choose the one by **Microsoft**, and click **Install**.
 
@@ -413,29 +417,54 @@ git clone https://github.com/Youth-AI-Lab/yal-workshop-kit.git
 
 **What you should see.** A new folder `yal-workshop-kit`.
 
-#### Step 2 - Open it in VS Code (not tested)
+#### Step 2 - Open it in VS Code
 
 ```bash
 code yal-workshop-kit
 ```
 
 If `code` is not found, open VS Code, then **File → Open Folder…** and choose the folder.
-If VS Code asks whether you trust the authors of the files, answer **Yes, I trust the authors**.
+VS Code may open it in **Restricted Mode**, with a banner **Restricted Mode is intended for safe
+code browsing…**: this is normal, leave it. VS Code asks whether you trust the folder in step 3. If it asks at once
+(another version, or another system), answer **Yes, I trust the authors**.
 
 **What you should see.** VS Code shows the files of the repository on the left.
 
-#### Step 3 - Reopen it in the container (not tested)
+#### Step 3 - Reopen it in the container
 
 VS Code sees the configuration of the container (the `.devcontainer` folder) and shows, at the
-bottom right, **"Reopen in Container"**: click it. If you missed it, open the command palette,
-type **Dev Containers: Reopen in Container** and press Enter.
+bottom right, **Folder contains a Dev Container configuration file.** with the button
+**Reopen in Container**: click it. If you missed it (it hides itself after a few seconds), open the
+command palette, type **Dev Containers: Reopen in Container** and press Enter.
+
+![The notification at the bottom right of VS Code, Folder contains a Dev Container configuration file. 1: the button Reopen in Container.](images/reopen-in-container.png)
+
+VS Code may then ask **Do you trust the authors of the files in this folder?**: click
+**Trust Folder & Continue**.
+
+![The window Do you trust the authors of the files in this folder? 1: the button Trust Folder & Continue.](images/trust-folder.png)
+
+**The kit only.** The kit has two configurations, so VS Code asks **Select a devcontainer.json
+file.**: choose **Youth AI Lab — customising a chatbot**. The other line, **Youth AI Lab — build the
+image locally (fallback)**, is for the facilitator. A workshop or a guide has only one configuration,
+and VS Code goes straight on.
+
+![The list Select a devcontainer.json file. 1: the line Youth AI Lab — customising a chatbot. Below it, the line Youth AI Lab — build the image locally (fallback).](images/choose-devcontainer.png)
 
 The first time, Docker downloads the image (4.34 GB on disk): a few minutes. The next times, the
 container opens in a few seconds.
 
-**What you should see.** VS Code reopens. The bottom left corner reads **Dev Container: Youth AI
-Lab — customising a chatbot** (for the guides: **Youth AI Lab — group chatbots with Open WebUI**,
-**Youth AI Lab — a chatbot with OpenCode**, or **Youth AI Lab — an assistant with Hermes Agent**). Open
+If you did not see it in part 2, a window **Welcome to VS Code** may cover everything now: click
+**Continue without Signing In**, then, on the next page (**Make It Yours**), click **Get Started**.
+A notification may also ask you to support an extension: close it.
+
+![The window Welcome to VS Code, Sign in to use GitHub Copilot. 1: the button Continue without Signing In, at the bottom right.](images/welcome-without-sign-in.png)
+
+**What you should see.** VS Code reopens. The bottom left corner reads **Dev Container:** and the
+name of the container, often cut short: for the workshops and the kit, **Dev Container: Youth AI
+Lab — customisin…**. The full name, **Youth AI Lab — customising a chatbot**, is in the title of
+the window. The guides have their own names: **Youth AI Lab — group chatbots with Open WebUI**,
+**Youth AI Lab — a chatbot with OpenCode**, and **Youth AI Lab — an assistant with Hermes Agent**. Open
 a terminal (menu **Terminal → New Terminal**): it greets you with the message of the repository (the
 workshops, the kit and the Open WebUI guide: **"Welcome! First, save your API key: workshop-login"**;
 the OpenCode guide: **"Welcome! Start the chatbot of this guide with: chatbot"**; the Hermes guide:
@@ -451,8 +480,9 @@ repository.
 > Your files stay in the folder `yal-workshop-kit` on your computer: you see them in the container,
 > and you can open them with any other program.
 
-On Windows and macOS, these steps are **not tested**. On Windows, make sure Docker Desktop is
-running before step 3.
+Steps 2 and 3 were tried on Linux (Ubuntu 26.04.1, VS Code 1.142.0, Dev Containers 0.469.0) on
+30 October 2026, with the kit. On Windows and macOS, these steps are **not tested**. On Windows, make
+sure Docker Desktop is running before step 3.
 
 ### The terminal way (optional)
 
@@ -532,8 +562,10 @@ change in the repository.
 2. The first time, it downloads Open WebUI (a 4.6 GB download, 6.1 GB on disk: 86 s on our
    connection, a few minutes on a slower one).
 3. When it is ready, it prints the address. VS Code forwards the port of the container to your
-   computer: open the **Ports** tab next to the terminal, and click the address on the line
-   **Open WebUI**.
+   computer: open the **Ports** tab next to **Terminal**, and click the address on the line
+   **Open WebUI (3000)**.
+
+   ![The panel at the bottom of VS Code. 1: the tab Ports, next to Terminal. 2: the line Open WebUI (3000), with its address localhost:3000.](images/ports-tab.png)
 
 **What you should see.** Open WebUI in your browser, at `http://localhost:3000`. If something else
 already uses port 3000 on your computer, VS Code picks another number: the **Ports** tab shows it.
@@ -592,9 +624,14 @@ docker stop $(docker ps -q --filter label=devcontainer.local_folder="$PWD/yal-wo
 ### Move to a new version
 
 When a repository moves to a new version of the image (after `git pull`, the line `"image"` of
-`.devcontainer/devcontainer.json` changes), VS Code offers to **Rebuild**. Your files stay; the key
-must be typed again ([part 4](#part-4---your-key)); Open WebUI keeps its data. The old image stays on
-the disk until you delete it (below).
+`.devcontainer/devcontainer.json` changes), VS Code shows, at the bottom right,
+**Configuration file(s) changed: devcontainer.json. The container might need to be rebuilt to apply
+the changes.**, with the buttons **Rebuild** and **Ignore**. Your files stay; the key must be typed
+again ([part 4](#part-4---your-key)); Open WebUI keeps its data. The old image stays on the disk
+until you delete it (below). We saw this notification on Linux, but did not click **Rebuild**
+(**not tested**).
+
+![The notification at the bottom right of VS Code, Configuration file(s) changed: devcontainer.json. 1: the button Rebuild. Next to it, the button Ignore.](images/rebuild-notification.png)
 
 **The Open WebUI guide**: its administrator password is lost with the Rebuild (part 4). Before you
 accept:
@@ -675,8 +712,10 @@ repositories), **Volumes** (their `dind-var-lib-…` volumes), **Images**
 
 ## Limits to know
 
-- **macOS and Windows are not tested**, nor the steps in VS Code's windows. Their steps follow the
-  documentation of each tool.
+- **macOS and Windows are not tested.** Their steps follow the documentation of each tool. The
+  steps in VS Code's windows (part 3, the Ports tab of part 5, the notification of part 7) were tried on Linux (Ubuntu 26.04.1, VS Code
+  1.142.0, Dev Containers 0.469.0) on 30 October 2026; closing the window (part 7) and a Rebuild
+  are not tested.
 - **`openwebui start` with a key is not tested outside a Codespace**, nor Docker Desktop's Docker
   inside a container ([part 5](#part-5---open-webui-in-the-container)).
 - **No group** ([part 6](#part-6---a-group)): use the local AI guide.
@@ -778,7 +817,7 @@ part 1 step 3 (the failure of the Docker inside the container without `iptable_n
 the containers of the kit and of the Open WebUI and OpenCode guides opened with the command line, the
 Docker inside them, the download of Open WebUI. The workflow [`guide.yml`](.github/workflows/guide.yml) follows the Linux
 commands of this guide at each change, on Ubuntu 24.04 and 26.04, for six repositories: workshops 1 and
-5, the kit, and the Open WebUI, OpenCode and Hermes guides ([`ci/README.md`](ci/README.md)): green on GitHub on 30 October 2026, with the image `2026.10.35`. Not tested: the steps in VS Code's windows, macOS, Windows, `openwebui start` with a key.
+5, the kit, and the Open WebUI, OpenCode and Hermes guides ([`ci/README.md`](ci/README.md)): green on GitHub on 30 October 2026, with the image `2026.10.35`. Tried on Linux (Ubuntu 26.04.1, VS Code 1.142.0, Dev Containers 0.469.0, Docker 29.9.1) on 30 October 2026, with a clone of the kit: part 3 steps 2 and 3 in VS Code's windows, the **Ports** tab, and the notification of part 7 after a change of the image (not the Rebuild itself); the screenshots come from this test. Not tested: closing the VS Code window (part 7), the Rebuild, macOS, Windows, `openwebui start` with a key.
 
 Texts: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt). Configuration and scripts:
 [EUPL-1.2](LICENSES/EUPL-1.2.txt). See [`REUSE.toml`](REUSE.toml).

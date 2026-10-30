@@ -3,9 +3,10 @@ SPDX-PackageName = "yal-devcontainer-guide"
 SPDX-PackageSupplier = "Youth AI Lab (Erasmus+)"
 SPDX-PackageDownloadLocation = "https://github.com/Youth-AI-Lab/yal-devcontainer-guide"
 
-# Texts: CC BY-SA 4.0.
+# Texts and screenshots: CC BY-SA 4.0. The screenshots show the interface of Visual Studio Code
+# and of its Dev Containers extension, which belongs to Microsoft.
 [[annotations]]
-path = ["README.md", "ci/README.md"]
+path = ["README.md", "ci/README.md", "images/**"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Youth AI Lab partners"
 SPDX-License-Identifier = "CC-BY-SA-4.0"
