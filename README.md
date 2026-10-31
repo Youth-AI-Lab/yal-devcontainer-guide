@@ -1,6 +1,6 @@
 # The workshops and the guides on your own computer
 
-## Youth AI Lab — Erasmus+ project
+## Youth AI Lab - Erasmus+ project
 
 - **Partners:** L.A.B. (Aix-en-Provence), UAB (Barcelona), Perlatecnica (Naples), Digitale Wolven
   (Antwerp), CSC Vent des Îles (La Rochelle)
@@ -404,11 +404,11 @@ VS Code may then ask **Do you trust the authors of the files in this folder?**: 
 ![The window Do you trust the authors of the files in this folder? 1: the button Trust Folder & Continue.](images/trust-folder.png)
 
 **The kit only.** The kit has two configurations, so VS Code asks **Select a devcontainer.json
-file.**: choose **Youth AI Lab — customising a chatbot**. The other line, **Youth AI Lab — build the
+file.**: choose **Youth AI Lab: build your own chatbot**. The other line, **Youth AI Lab: build the
 image locally (fallback)**, is for the facilitator. A workshop or a guide has only one configuration,
 and VS Code goes straight on.
 
-![The list Select a devcontainer.json file. 1: the line Youth AI Lab — customising a chatbot. Below it, the line Youth AI Lab — build the image locally (fallback).](images/choose-devcontainer.png)
+![The list Select a devcontainer.json file. 1: the line Youth AI Lab: build your own chatbot. Below it, the line Youth AI Lab: build the image locally (fallback).](images/choose-devcontainer.png)
 
 The first time, Docker downloads the image (4.34 GB on disk): a few minutes. The next times, the
 container opens in a few seconds.
@@ -420,10 +420,9 @@ A notification may also ask you to support an extension: close it.
 ![The window Welcome to VS Code, Sign in to use GitHub Copilot. 1: the button Continue without Signing In, at the bottom right.](images/welcome-without-sign-in.png)
 
 **What you should see.** VS Code reopens. The bottom left corner reads **Dev Container:** and the
-name of the container, often cut short: for the workshops and the kit, **Dev Container: Youth AI
-Lab — customisin…**. The full name, **Youth AI Lab — customising a chatbot**, is in the title of
-the window. The guides have their own names: **Youth AI Lab — group chatbots with Open WebUI**,
-**Youth AI Lab — a chatbot with OpenCode**, and **Youth AI Lab — an assistant with Hermes Agent**. Open
+name of the container, often cut short. The full name is in the title of the window: for the
+workshops and the kit, **Youth AI Lab: build your own chatbot**. The guides have their own names: **Youth AI Lab: group chatbots with Open WebUI**,
+**Youth AI Lab: a chatbot with OpenCode**, and **Youth AI Lab: an assistant with Hermes Agent**. Open
 a terminal (menu **Terminal → New Terminal**): it greets you with the message of the repository (the
 workshops, the kit and the Open WebUI guide: **"Welcome! First, save your API key: workshop-login"**;
 the OpenCode guide: **"Welcome! Start the chatbot of this guide with: chatbot"**; the Hermes guide:
