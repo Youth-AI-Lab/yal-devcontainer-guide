@@ -22,7 +22,7 @@ see:
 
 - `linux`: the version of the guide this block belongs to;
 - `stage=`: [`run_guide.py`](run_guide.py) runs the blocks of one stage in order, in one shell, as in
-  one terminal: `check` (Docker and `iptable_nat`, part 1), `cli` (the command line, part 3), `open`
+  one terminal: `check` (Docker, part 1), `cli` (the command line, part 3), `open`
   (download and open a repository), `inside` (a command in the container), `delete` (part 7);
 - `check="..."`: a command that the text asks the reader to type after the block;
 - `expect="..."`: a text that the output must contain ("What you should see").

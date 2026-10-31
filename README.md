@@ -46,9 +46,9 @@ pairs get in the room.
 30 days without use, and the free quota is limited (60 hours a month on a 2-core machine). On your
 computer, none of this: the folder stays as long as you keep it.
 
-**Tested, with the limits we found.** On Linux, in October 2026, we checked Docker, the setting of
-part 1 step 3, the containers of six repositories opened from the terminal (two workshops, the kit,
-three guides), and the Docker inside them. On 30 October 2026, we also tried in VS Code's windows on
+**Tested, with the limits we found.** On Linux, in October 2026, we checked Docker, the containers
+of six repositories opened from the terminal (two workshops, the kit, three guides), and the Docker
+inside them. On 30 October 2026, we also tried in VS Code's windows on
 Linux (Ubuntu 26.04.1, VS Code 1.142.0, Dev Containers 0.469.0), with the kit: part 3, the Ports tab
 of part 5 and the notification of part 7. Everything
 else follows the official documentation of each tool, and is marked **(not tested)**: macOS,
@@ -190,48 +190,7 @@ docker run --rm hello-world
 
 **What you should see.** A few lines that start with **"Hello from Docker!"**.
 
-#### Step 3 - Allow Docker inside the container
-
-The command `openwebui` starts Open WebUI with a **second Docker, inside the container**. With the
-images before `2026.10.31`, that second Docker needs a part of the Linux kernel (the core of the
-system), `iptable_nat`, that some recent systems do not load by themselves: we met this on Ubuntu
-26.04 with its 7.0 kernel. Since `2026.10.31`, it chooses by itself the way that works on your
-computer (**not yet tested** on a computer that has not loaded `iptable_nat`): do this step only if
-`openwebui` says that Docker is not available. Check:
-
-<!-- ci linux stage=check -->
-```bash
-lsmod | grep -q '^iptable_nat' && echo "iptable_nat: loaded" || echo "iptable_nat: not loaded"
-```
-
-**What you should see.** `iptable_nat: loaded`: go to step 4. `iptable_nat: not loaded`: load it
-for now (until the computer restarts):
-
-<!-- ci linux stage=check check="lsmod | grep '^iptable_nat'" expect="iptable_nat" -->
-```bash
-sudo modprobe iptable_nat
-```
-
-**What you should see.** Nothing: the command prints nothing when it works. This part of the
-kernel was already there, only not loaded. On our test computer, Docker itself kept working with
-it.
-
-Then, once Open WebUI has worked in the container ([part 5](#part-5---open-webui-in-the-container)),
-you can make it load at each start of the computer:
-
-```bash
-echo iptable_nat | sudo tee /etc/modules-load.d/iptable_nat.conf
-```
-
-It adds this one file; [part 7](#delete-everything) says how to remove it. Without it, type
-`sudo modprobe iptable_nat` again after each restart, before you use `openwebui`.
-
-> [!NOTE]
-> Without `iptable_nat`, everything works except `openwebui`, which then says that Docker is not
-> available ([Troubleshooting](#openwebui-says-that-docker-is-not-available)). The loading at each
-> start is **not tested**: we have not restarted the test computer since.
-
-#### Step 4 - Install VS Code
+#### Step 3 - Install VS Code
 
 Download the `.deb` file from <https://code.visualstudio.com/download>, then:
 
@@ -577,10 +536,11 @@ already uses port 3000 on your computer, VS Code picks another number: the **Por
 > reopen the container.
 
 > [!NOTE]
-> **Tested so far.** On Linux, the Docker inside the container starts (after part 1 step 3) and
-> downloads Open WebUI (86 s, 6.1 GB; 29 October 2026). Opening its page through VS Code, and
-> `openwebui start` itself with a key, are **not yet tested** outside a Codespace; nor Docker
-> Desktop on macOS and Windows.
+> **Tested so far.** On Linux, the Docker inside the container starts and downloads Open WebUI (86 s,
+> 6.1 GB; 29 October 2026). With the image `2026.10.36`, `openwebui start` also finishes and loads
+> its 37 files, without a real key (284 s; October 2026). Opening its page through VS Code, and
+> `openwebui start` with a real key, are **not yet tested** outside a Codespace; nor Docker Desktop
+> on macOS and Windows.
 
 ---
 
@@ -700,8 +660,8 @@ repositories), **Volumes** (their `dind-var-lib-…` volumes), **Images**
    **What you should see.** A few lines `Untagged:` and `Deleted:`, or nothing: on some computers,
    Docker keeps only the copy of step 2, and there is then nothing more to delete.
 
-4. **On Linux, if you made `iptable_nat` load at each start** (part 1, step 3), and no other
-   program needs it:
+4. **On Linux, if an earlier version of this guide made you load `iptable_nat` at each start**, and
+   no other program needs it:
 
    ```bash
    sudo rm /etc/modules-load.d/iptable_nat.conf
@@ -766,10 +726,21 @@ tail -3 /tmp/dockerd.log
 ```
 
 If you read **`iptables failed: iptables --wait -t nat -N DOCKER`** and **"Perhaps iptables or your
-kernel needs to be upgraded"**: on Linux, do part 1, Linux, step 3. Then close the VS Code window
-and open the folder again (**File → Open Recent**): the container starts again, and its Docker with
-it, and your key stays (**not tested**; with the terminal way: `docker restart` followed by the ID of
-the container). Otherwise, copy these lines in an
+kernel needs to be upgraded"**, your copy of the repository uses an image older than `2026.10.31`.
+These images need a part of the Linux kernel (the core of the system), `iptable_nat`, that some
+recent systems do not load by themselves (we met this on Ubuntu 26.04 with its 7.0 kernel). The best
+fix is to [move to a new version](#move-to-a-new-version). If you must keep this one, on Linux, load
+that part until the computer restarts:
+
+```bash
+sudo modprobe iptable_nat
+```
+
+The command prints nothing when it works. Then close the VS Code window and open the folder again
+(**File → Open Recent**): the container starts again, and its Docker with it, and your key stays
+(**not tested**; with the terminal way: `docker restart` followed by the ID of the container).
+
+If you read something else, copy these lines in an
 [issue](https://github.com/Youth-AI-Lab/yal-devcontainer-guide/issues).
 
 ### "Your administrator password does not open this Open WebUI"
@@ -814,11 +785,11 @@ Written for the Youth AI Lab project (Erasmus+), October 2026. Tested on Ubuntu 
 Docker Engine 29.9, Dev Containers command line 0.89.0) with the image `2026.10.30` (and `2026.10.31`
 for the Docker inside the container and the deletion of part 7), on 29 October
 2026: Docker (already installed: the install commands of part 1 come from Docker's documentation),
-part 1 step 3 (the failure of the Docker inside the container without `iptable_nat`, then the fix),
-the containers of the kit and of the Open WebUI and OpenCode guides opened with the command line, the
+the failure of the Docker inside the container without `iptable_nat` with the image `2026.10.30`,
+then the fix, the containers of the kit and of the Open WebUI and OpenCode guides opened with the command line, the
 Docker inside them, the download of Open WebUI. The workflow [`guide.yml`](.github/workflows/guide.yml) follows the Linux
 commands of this guide at each change, on Ubuntu 24.04 and 26.04, for six repositories: workshops 1 and
-5, the kit, and the Open WebUI, OpenCode and Hermes guides ([`ci/README.md`](ci/README.md)): green on GitHub on 30 October 2026, with the image `2026.10.35`. Tried on Linux (Ubuntu 26.04.1, VS Code 1.142.0, Dev Containers 0.469.0, Docker 29.9.1) on 30 October 2026, with a clone of the kit: part 3 steps 2 and 3 in VS Code's windows, the **Ports** tab, and the notification of part 7 after a change of the image (not the Rebuild itself); the screenshots come from this test. Not tested: closing the VS Code window (part 7), the Rebuild, macOS, Windows, `openwebui start` with a key.
+5, the kit, and the Open WebUI, OpenCode and Hermes guides ([`ci/README.md`](ci/README.md)): green on GitHub on 30 October 2026, with the image `2026.10.35`. Tried on Linux (Ubuntu 26.04.1, VS Code 1.142.0, Dev Containers 0.469.0, Docker 29.9.1) on 30 October 2026, with a clone of the kit: part 3 steps 2 and 3 in VS Code's windows, the **Ports** tab, and the notification of part 7 after a change of the image (not the Rebuild itself); the screenshots come from this test. With the image `2026.10.36`, on Ubuntu 26.04.1 (kernel 7.0.0-38, Docker 29.9.1) with `iptable_nat` not loaded: the Docker inside the container, a published port and the outgoing network after a restart, on 30 October 2026; `openwebui start` without a real key (284 s, 37 files, a search that works). Not tested: closing the VS Code window (part 7), the Rebuild, macOS, Windows, `openwebui start` with a key.
 
 Texts: [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt). Configuration and scripts:
 [EUPL-1.2](LICENSES/EUPL-1.2.txt). See [`REUSE.toml`](REUSE.toml).
