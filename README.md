@@ -108,7 +108,7 @@ Measured on a Linux laptop (Ubuntu 26.04, Docker Engine 29.9), 29 and 30 October
 | What | Size | When |
 |---|---|---|
 | The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.37`) | 4.34 GB on disk (a local amd64 build of `2026.10.32`, 30 October 2026; later versions and arm64 not measured) | once, the first time you open any of these repositories |
-| Open WebUI, inside the container (`openwebui start`) | 6.1 GB on disk (a 4.6 GB download; 86 s on this connection) | once per container, the first time you start Open WebUI there |
+| Open WebUI, inside the container (`openwebui start`) | 6.1 GB on disk (a 1.6 GB download; 86 s on this connection) | once per container, the first time you start Open WebUI there |
 | Open WebUI running | about 1.2 GB of memory (measured in a Codespace) | while it runs |
 
 All the repositories of [part 3](#part-3---open-a-repository) use the **same image**: you download it
@@ -518,7 +518,7 @@ inside the container. The configuration of the image asks for this by itself: th
 change in the repository.
 
 1. Follow the README of the repository up to `openwebui start`.
-2. The first time, it downloads Open WebUI (a 4.6 GB download, 6.1 GB on disk: 86 s on our
+2. The first time, it downloads Open WebUI (a 1.6 GB download, 6.1 GB on disk: 86 s on our
    connection, a few minutes on a slower one).
 3. When it is ready, it prints the address. VS Code forwards the port of the container to your
    computer: open the **Ports** tab next to **Terminal**, and click the address on the line
