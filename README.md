@@ -8,7 +8,7 @@
   - Read the [Troubleshooting](#troubleshooting) section at the end of this guide.
   - Look at, or open, an [issue](https://github.com/Youth-AI-Lab/yal-devcontainer-guide/issues).
 
-> **A guide to follow on your own, in about one hour the first time.** The five workshops and three
+> **A guide to follow on your own, in about one hour the first time.** The six workshops and three
 > guides of the Youth AI Lab project run in a **GitHub Codespace**: a computer in your browser, with
 > nothing to install. This guide is the other way: the **same thing on your own computer**, in a
 > *container*. You install a few tools once (Docker, git, and Visual Studio Code with its Dev
@@ -346,7 +346,8 @@ all the files, but it has no workshop page.
 | [`yal-workshop-search`](https://github.com/Youth-AI-Lab/yal-workshop-search) | workshop 3 | its README |
 | [`yal-workshop-tools`](https://github.com/Youth-AI-Lab/yal-workshop-tools) | workshop 4 | its README |
 | [`yal-workshop-wiki`](https://github.com/Youth-AI-Lab/yal-workshop-wiki) | workshop 5 | its README |
-| [`yal-workshop-kit`](https://github.com/Youth-AI-Lab/yal-workshop-kit) | the home of the series, with the files of the five workshops | its README |
+| [`yal-workshop-finetune`](https://github.com/Youth-AI-Lab/yal-workshop-finetune) | workshop 6 | its README |
+| [`yal-workshop-kit`](https://github.com/Youth-AI-Lab/yal-workshop-kit) | the home of the series, with the files of the first five workshops | its README |
 | [`yal-openwebui-guide`](https://github.com/Youth-AI-Lab/yal-openwebui-guide) | chatbots for your groups with Open WebUI | its README, part 1 step 2 |
 | [`yal-opencode-guide`](https://github.com/Youth-AI-Lab/yal-opencode-guide) | a chatbot of your own with OpenCode | its README, part 1 step 2 |
 | [`yal-hermes-guide`](https://github.com/Youth-AI-Lab/yal-hermes-guide) | an assistant to prepare your sessions, never for use with young people | its README |
@@ -775,7 +776,7 @@ The container was made again (Rebuild, or a new version of the image): this is e
 - Docker: [Engine on Ubuntu](https://docs.docker.com/engine/install/ubuntu/),
   [Docker Desktop on Mac](https://docs.docker.com/desktop/setup/install/mac-install/),
   [Docker Desktop on Windows](https://docs.docker.com/desktop/setup/install/windows-install/)
-- The series: [the five workshops](https://github.com/Youth-AI-Lab/yal-workshop-kit#the-series) and
+- The series: [the six workshops](https://github.com/Youth-AI-Lab/yal-workshop-kit#the-series) and
   [the other guides](https://github.com/Youth-AI-Lab/yal-workshop-kit#going-further)
 
 ## About
