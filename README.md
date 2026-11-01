@@ -107,7 +107,7 @@ Measured on a Linux laptop (Ubuntu 26.04, Docker Engine 29.9), 29 and 30 October
 
 | What | Size | When |
 |---|---|---|
-| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.40`) | 4.34 GB on disk (a local amd64 build of `2026.10.32`, 30 October 2026; later versions and arm64 not measured) | once, the first time you open any of these repositories |
+| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.41`) | 4.34 GB on disk (a local amd64 build of `2026.10.32`, 30 October 2026; later versions and arm64 not measured) | once, the first time you open any of these repositories |
 | Open WebUI, inside the container (`openwebui start`) | 6.1 GB on disk (a 1.6 GB download; 86 s on this connection) | once per container, the first time you start Open WebUI there |
 | Open WebUI running | about 1.2 GB of memory (measured in a Codespace) | while it runs |
 
