@@ -2,7 +2,7 @@
 
 The workflow [`guide.yml`](../.github/workflows/guide.yml) follows the Linux part of this guide on a
 fresh machine of GitHub, at each change and every Monday (the Dev Containers tools and Docker change
-without us), for six of the nine repositories that use the image of the workshops.
+without us), for six of the ten repositories that use the image of the workshops.
 
 | System | State |
 |---|---|
@@ -29,7 +29,7 @@ see:
 
 Only one thing changes in the commands (`SUBSTITUTIONS` in `run_guide.py`): the guide opens the
 workshop kit and says "for a workshop or a guide, change the name of the repository"; `CI_REPO` does
-it, so the workflow opens six of the nine repositories: workshops 1 and 5 (the smallest and the largest),
+it, so the workflow opens six of the ten repositories: workshops 1 and 5 (the smallest and the largest),
 the kit, and the three guides.
 
 After `inside`, the workflow waits for the Docker inside the container (it starts a
@@ -37,7 +37,7 @@ few seconds after the container), then checks that it runs a container: the step
 windows are not checked, but this is what `openwebui` needs.
 
 To run the stages by hand, give them the same `CI_WORKDIR` (`export CI_WORKDIR=$(mktemp -d)`), so that
-`inside` and `delete` find what `open` downloaded. The stage `check` needs `sudo` without a password.
+`inside` and `delete` find what `open` downloaded.
 
 ## When you change the guide
 
@@ -47,7 +47,7 @@ To run the stages by hand, give them the same `CI_WORKDIR` (`export CI_WORKDIR=$
 
 ## What it does not check
 
-The install of Docker and VS Code (part 1, steps 1 and 4), the steps in VS Code's windows, macOS,
+The install of Docker and VS Code (part 1, steps 1 and 3), the steps in VS Code's windows, macOS,
 Windows, `openwebui start` with a key, and a group on a network. Check these by hand on a real
 computer, as in the [About](../README.md#about) section.
 

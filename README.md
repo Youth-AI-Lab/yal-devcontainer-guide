@@ -121,7 +121,7 @@ once. Each open repository has its **own container**, and each container keeps i
 | Where your work lives | in the Codespace (deleted after 30 days of no use) | in a folder of your computer |
 | Idle stop | after 30 minutes | none |
 | The key of the model | `workshop-login` (or `/connect` in OpenCode) | the same, in the container ([part 4](#part-4---your-key)) |
-| Open WebUI | works out of the box | its Docker starts, with one setting on some Linux computers; `openwebui start` with a key not tested ([part 5](#part-5---open-webui-in-the-container)) |
+| Open WebUI | works out of the box | its Docker starts by itself; `openwebui start` with a key not tested ([part 5](#part-5---open-webui-in-the-container)) |
 | A link for a group | a `…app.github.dev` address | none ([part 6](#part-6---a-group)) |
 
 ---
@@ -499,10 +499,11 @@ version of the image ([part 7](#move-to-a-new-version)), or a deleted container.
 Closing VS Code or restarting the computer keeps it.
 
 > [!IMPORTANT]
-> **The Open WebUI guide.** On your computer, its administrator password for Open WebUI is kept in
-> the same home folder of the container, and is lost with it, while Open WebUI keeps its data:
-> `openwebui` then says that your administrator password does not open this Open WebUI. Before a
-> Rebuild, save your chatbots with `openwebui export` ([part 7](#move-to-a-new-version)).
+> **The Open WebUI guide.** On your computer, its administrator password for Open WebUI and the
+> secret of its sign-ins are **in the folder of the repository**, in `.openwebui-class/admin.json`
+> (not the key of the model). Only you can read this file, and git ignores it. It stays when the
+> container is made again, and it stays on your computer until you delete it. So never share
+> `.openwebui-class/` with your work, and delete it at the end ([part 7](#delete-everything)).
 
 > [!WARNING]
 > Never write the key in a file of the repository folder (a `.env` file, a note, the README), and
@@ -593,15 +594,18 @@ until you delete it (below). We saw this notification on Linux, but did not clic
 
 ![The notification at the bottom right of VS Code, Configuration file(s) changed: devcontainer.json. 1: the button Rebuild. Next to it, the button Ignore.](images/rebuild-notification.png)
 
-**The Open WebUI guide**: its administrator password is lost with the Rebuild (part 4). Before you
-accept:
+**The Open WebUI guide**: its administrator password stays, in the folder of the repository
+(part 4). We checked this with a new container on the same folder, not with a real **Rebuild**
+(**not tested**). So before you accept:
 
 1. In the terminal of the container, type `openwebui export`: your chatbots go to the folder
    `exports/` of the repository, which stays.
-2. After the Rebuild, if `openwebui start` says that your administrator password does not open this
-   Open WebUI, type `openwebui reset` (it deletes the accounts and the conversations of the
-   participants), then `openwebui start`, then `openwebui import exports/<file>.zip` for each
-   chatbot (**not tested** on a computer).
+2. After the Rebuild, `openwebui start` should open Open WebUI as before. If it says that your
+   administrator password does not open this Open WebUI, first read
+   [this part of the Open WebUI guide](https://github.com/Youth-AI-Lab/yal-openwebui-guide#the-administrator-password-does-not-work).
+   Only if the file `.openwebui-class/admin.json` was lost, type `openwebui reset` (it deletes the
+   chatbots, and the accounts and the conversations of the participants), then `openwebui start`,
+   then `openwebui import exports/<file>.zip` for each chatbot (**not tested** on a computer).
 
 ### Delete everything
 
@@ -632,8 +636,8 @@ repositories), **Volumes** (their `dind-var-lib-…` volumes), **Images**
    ```
 
    **What you should see.** The name of the container and its volumes (`dind-var-lib-docker-…`, and with
-   newer images also `dind-var-lib-containerd-…`), then
-   one `vsc-yal-workshop-kit-…` image and, often, the image of the workshops. If the first command shows an
+   newer images also `dind-var-lib-containerd-…`), then,
+   on Linux, one `vsc-yal-workshop-kit-…` image and, often, the image of the workshops. If the first command shows an
    error, the container was already deleted.
 
 2. **Delete** the container, its volumes and its copy of the image (the files of your folder stay):
@@ -643,11 +647,18 @@ repositories), **Volumes** (their `dind-var-lib-…` volumes), **Images**
    vol=$(docker inspect -f '{{range .Mounts}}{{if eq .Type "volume"}}{{.Name}} {{end}}{{end}}' $id)
    docker rm -f $id
    docker volume rm $vol
-   docker image rm $(docker image ls --format '{{.Repository}}:{{.Tag}}' | grep -E '^vsc-yal-workshop-kit-[0-9a-f]{64}-uid:')
+   docker image ls --format '{{.Repository}}:{{.Tag}}' | grep -E '^vsc-yal-workshop-kit-[0-9a-f]{64}-uid:' | xargs -r docker image rm
    ```
 
    Do the same two steps for each other repository you opened, with its name instead of
    `yal-workshop-kit`.
+
+   **The Open WebUI guide:** its administrator password stays in your folder ([part 4](#part-4---your-key)).
+   Delete it too (on Windows, delete this folder in File Explorer; **not tested**):
+
+   ```bash
+   rm -rf yal-openwebui-guide/.openwebui-class
+   ```
 
 3. **At the very end**, when no repository uses it any more, delete the image of the workshops (all
    its versions):
@@ -745,7 +756,8 @@ If you read something else, copy these lines in an
 
 ### "Your administrator password does not open this Open WebUI"
 
-The Open WebUI guide, after a Rebuild: see [part 7](#move-to-a-new-version).
+The Open WebUI guide: the password in Open WebUI is no longer the one in
+`.openwebui-class/admin.json`. See [part 7](#move-to-a-new-version).
 
 ### The disk is full
 

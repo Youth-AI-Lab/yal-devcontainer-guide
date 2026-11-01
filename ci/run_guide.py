@@ -15,7 +15,8 @@ workshop kit, and says "for a workshop or a guide, change the name of the reposi
 that, so that the same blocks open each repository of the workflow.
 
 The blocks run in CI_WORKDIR (default: a new temporary folder), never in the home folder.
-Never run the stage `delete` on your own computer: it deletes every Dev Containers container.
+Never run the stage `delete` on your own computer: it deletes the container of the repository, and
+every version of the image of the workshops.
 
 Usage (the same CI_WORKDIR for every stage, so that `inside` finds what `open` downloaded):
     export CI_WORKDIR=$(mktemp -d)

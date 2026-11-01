@@ -25,7 +25,7 @@ jobs:
     env:
       CI_REPO: ${{ matrix.repo }}
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       # The same working folder for every stage (the runner context is not allowed in env above).
       - name: Working folder
@@ -33,7 +33,7 @@ jobs:
           mkdir -p "$RUNNER_TEMP/work"
           echo "CI_WORKDIR=$RUNNER_TEMP/work" >> "$GITHUB_ENV"
 
-      - name: Part 1, steps 2 and 3 - Docker, and Docker inside a container
+      - name: Part 1, step 2 - Docker
         timeout-minutes: 5
         run: python3 ci/run_guide.py --os linux --stage check
 
