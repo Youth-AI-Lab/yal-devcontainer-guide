@@ -484,9 +484,9 @@ same as in a Codespace. The other tools are there too, waiting for a key
 
 ## Part 4 - Your key
 
-Each repository says how to save the key of the model: `workshop-login` in the workshops, the kit and
-the Open WebUI guide, `/connect` inside OpenCode in the OpenCode guide, `hermes auth add` in the Hermes
-guide. Type it **in a terminal of the
+Each repository says how to save the key of the model, an Anthropic key or an OpenRouter key:
+`workshop-login` in the workshops, the kit and the Open WebUI guide, `/connect` inside OpenCode in the
+OpenCode guide, `hermes auth add` in the Hermes guide. Type it **in a terminal of the
 container**: a terminal opened in VS Code while the bottom left corner reads **Dev Container: …**.
 
 **Where the key is kept.** In the home folder of the container (`/home/vscode`): `~/.workshop-key`
