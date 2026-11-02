@@ -107,7 +107,7 @@ Measured on a Linux laptop (Ubuntu 26.04, Docker Engine 29.9), 29 and 30 October
 
 | What | Size | When |
 |---|---|---|
-| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.43`) | 4.34 GB on disk (a local amd64 build of `2026.10.32`, 30 October 2026; later versions and arm64 not measured) | once, the first time you open any of these repositories |
+| The image of the workshops (`ghcr.io/youth-ai-lab/yal-workshop-devcontainer:2026.10.44`) | 4.34 GB on disk (a local amd64 build of `2026.10.32`, 30 October 2026; later versions and arm64 not measured) | once, the first time you open any of these repositories |
 | Open WebUI, inside the container (`openwebui start`) | 6.1 GB on disk (a 1.6 GB download; 86 s on this connection) | once per container, the first time you start Open WebUI there |
 | Open WebUI running | about 1.2 GB of memory (measured in a Codespace) | while it runs |
 
@@ -490,7 +490,7 @@ OpenCode guide, `hermes auth add` in the Hermes guide. Type it **in a terminal o
 container**: a terminal opened in VS Code while the bottom left corner reads **Dev Container: …**.
 
 **Where the key is kept.** In the home folder of the container (`/home/vscode`): `~/.workshop-key`
-for `workshop-login` (readable only by you), `~/.local/share/opencode/` for OpenCode,
+for `workshop-login` (locked away: only the workshop commands can open it), `~/.local/share/opencode/` for OpenCode,
 `~/.hermes/auth.json` for Hermes. **Never in the
 folder of the repository**: it cannot be shared or published with your work by mistake.
 
