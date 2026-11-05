@@ -17,7 +17,7 @@ HTML comment that GitHub does not show, says which code blocks to run, and what 
 see:
 
 ```html
-<!-- ci linux stage=cli check="devcontainer --version" expect="0.89.0" -->
+<!-- ci linux stage=cli check="devcontainer --version" expect="0.90.0" -->
 ```
 
 - `linux`: the version of the guide this block belongs to;

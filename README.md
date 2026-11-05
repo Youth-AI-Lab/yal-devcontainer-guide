@@ -454,12 +454,12 @@ show what you expect. It needs **Node.js 20 or later** (`node --version` shows i
   from <https://nodejs.org> (**not tested**).
 - **macOS:** `brew install node`, then the command below **without** `sudo` (**not tested**).
 
-<!-- ci linux stage=cli check="devcontainer --version" expect="0.89.0" -->
+<!-- ci linux stage=cli check="devcontainer --version" expect="0.90.0" -->
 ```bash
-sudo npm install -g @devcontainers/cli@0.89.0
+sudo npm install -g @devcontainers/cli@0.90.0
 ```
 
-**What you should see.** `devcontainer --version` prints `0.89.0`. Then, next to the folder of
+**What you should see.** `devcontainer --version` prints `0.90.0`. Then, next to the folder of
 step 1:
 
 <!-- ci linux stage=open expect="success" -->
@@ -794,8 +794,9 @@ The container was made again (Rebuild, or a new version of the image): this is e
 ## About
 
 Written for the Youth AI Lab project (Erasmus+), October 2026. Tested on Ubuntu 26.04 (kernel 7.0,
-Docker Engine 29.9, Dev Containers command line 0.89.0) with the image `2026.10.30` (and `2026.10.31`
-for the Docker inside the container and the deletion of part 7), on 29 October
+Docker Engine 29.9, Dev Containers command line 0.89.0; the guide now installs 0.90.0, run by its
+CI) with the image `2026.10.30` (and `2026.10.31` for the Docker inside the container and the
+deletion of part 7), on 29 October
 2026: Docker (already installed: the install commands of part 1 come from Docker's documentation),
 the failure of the Docker inside the container without `iptable_nat` with the image `2026.10.30`,
 then the fix, the containers of the kit and of the Open WebUI and OpenCode guides opened with the command line, the
