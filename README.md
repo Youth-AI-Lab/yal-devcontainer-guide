@@ -470,12 +470,12 @@ devcontainer up --workspace-folder yal-workshop-kit
 **What you should see.** After many lines, a last line with **`"outcome":"success"`**. Then run a
 command inside the container:
 
-<!-- ci linux stage=inside expect="opencode v2.1.4" -->
+<!-- ci linux stage=inside expect="opencode v2.2.5" -->
 ```bash
 devcontainer exec --workspace-folder yal-workshop-kit opencode --version
 ```
 
-**What you should see.** **`opencode v2.1.4`**: the version of OpenCode pinned in the image, the
+**What you should see.** **`opencode v2.2.5`**: the version of OpenCode pinned in the image, the
 same as in a Codespace. The other tools are there too, waiting for a key
 ([part 4](#part-4---your-key)). A container opened this way keeps running until you stop it
 ([part 7](#stop)).
